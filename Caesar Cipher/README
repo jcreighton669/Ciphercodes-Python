@@ -1,0 +1,45 @@
+key: W
+
+encrypted text: 
+DWLECEJAWYDDWJZXQPNAPQNJAZEJPDAARAJEJCPKWJANHAUPDANASWOWUKQJCHWZUKBSWHAOSDKYWQCDPWHWNCABEODSEPDKQPOY
+
+decrypted text: 
+H A PIG IN EACH HAND BUT RETURNED IN THE EVENING TO ANERLEY
+THERE WAS A YOUNG LADY OF WALES WHO CAUGHT A LARGE FISH WITHOUT SC
+
+I created a python program that loops the given encrypted text through a shift algorithm using unicode 
+alphabet and moding each letter. The program runs each of the 26 possibilities for the English language (hoped 
+this would be the original language) and I looked for the one with the most recognizable words. According to the 
+
+I separated the words and then used an online ceaser to confirm assumptions. I then googled a phrase from the 
+deciphered text and found the source was a pair of limericks. 
+
+rot.py:
+
+from string import ascii_uppercase as alphabet
+
+
+def decrypt(string, shift):
+
+    cipher = ''
+    string = string.upper()
+    for char in string:
+        if char == ' ':
+            cipher = cipher + char
+        elif char:
+            cipher = cipher + chr((ord(char) + shift - 65) % 26 + 65)
+
+    return cipher
+
+
+count = 0
+for i in range(25, 0, -1):
+    count += 1
+    text = 'DWLECEJAWYDDWJZXQPNAPQNJAZEJPDAARAJEJCPKWJANHAUPDANASWOWUKQJCHWZUKBSWHAOSDKYWQCDPWHWNCABEODSEPDKQPOY'
+    print("shift count: ", count)
+    print("original string: ", text)
+    print("after encryption: ", decrypt(text, i))
+    print()
+
+X = 22
+print(alphabet[X])
